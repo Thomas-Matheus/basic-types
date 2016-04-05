@@ -23,7 +23,7 @@ class String
     public function __construct($str)
     {
         if (is_null($str)) {
-            throw new \InvalidArgumentException('Found null when string is expected');
+            throw new \InvalidArgumentException('Found null when string was expected');
         }
         $this->value = (string) $str;
     }
