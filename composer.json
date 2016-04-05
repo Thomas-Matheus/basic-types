@@ -1,0 +1,19 @@
+{
+  "name": "lazyeight/basicTypes",
+  "type": "library",
+  "description": "A set of classes for basic work",
+  "keywords": [
+    "basic types",
+    "string"
+  ],
+  "autoload": {
+    "psr-4": {
+      "LazyEight\\BasicTypes\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\LazyEight\\BasicTypes\\": ""
+    }
+  }
+}
