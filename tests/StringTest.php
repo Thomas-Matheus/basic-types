@@ -94,6 +94,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \LazyEight\BasicTypes\String::__construct
+     * @expectedException \InvalidArgumentException
      * @uses \LazyEight\BasicTypes\String
      */
     public function testCannotBeCreatedFromNull()
