@@ -2,7 +2,7 @@
   "name": "lazyeight/basic-types",
   "type": "library",
   "license": "MIT",
-  "description": "A set of classes of for basic work written with pure PHP",
+  "description": "Simple PHP classes based on other classes from another programming languages. All classes are implemented using only PHP without any other legacy code.",
   "keywords": [
     "basic",
     "string",
