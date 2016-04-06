@@ -11,32 +11,32 @@ namespace Test\BasicTypes;
 
 use LazyEight\BasicTypes\Stringy;
 
-class StringTest extends \PHPUnit_Framework_TestCase
+class StringyTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var string
      */
-    protected $testString = 'TEST STRING';
+    protected $testStringy = 'TEST STRING';
 
     /**
      * @var string
      */
-    protected $testStringSuffix = 'RING';
+    protected $testStringySuffix = 'RING';
 
     /**
      * @var string
      */
-    protected $testErrorString = 'ERROR STRING';
+    protected $testErrorStringy = 'ERROR STRING';
 
     /**
      * @var string
      */
-    protected $testStringIgnoreCase = 'teST strING';
+    protected $testStringyIgnoreCase = 'teST strING';
 
     /**
      * @var string
      */
-    protected $testStringIgnoreCaseSuffix = 'rING';
+    protected $testStringyIgnoreCaseSuffix = 'rING';
 
     /**
      * @var string
@@ -49,19 +49,19 @@ class StringTest extends \PHPUnit_Framework_TestCase
     protected $testConcatSuffix = ' CONCAT';
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @uses \LazyEight\BasicTypes\Stringy
      */
-    public function testCanConstructedByStringValue()
+    public function testCanConstructedByStringyValue()
     {
-        $str = new Stringy($this->testString);
+        $str = new Stringy($this->testStringy);
         $this->assertInstanceOf(Stringy::class, $str);
         return $str;
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @uses \LazyEight\BasicTypes\Stringy
      */
     public function testCanBeConstructedByIntValue()
     {
@@ -71,8 +71,8 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @uses \LazyEight\BasicTypes\Stringy
      */
     public function testCanBeConstructedByTrueBoolValue()
     {
@@ -82,8 +82,8 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @uses \LazyEight\BasicTypes\Stringy
      */
     public function testCanBeCreatedByFalseBoolValue()
     {
@@ -93,9 +93,9 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
      * @expectedException \InvalidArgumentException
-     * @uses \LazyEight\BasicTypes\String
+     * @uses \LazyEight\BasicTypes\Stringy
      */
     public function testCannotBeCreatedFromNull()
     {
@@ -104,94 +104,94 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::getValue
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::getValue
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testValueCanBeRetrieved(Stringy $str)
     {
-        $this->assertEquals($this->testString, $str->getValue());
+        $this->assertEquals($this->testStringy, $str->getValue());
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::equals
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::equals
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testEqualsMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->equals($this->testString));
+        $this->assertTrue($str->equals($this->testStringy));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::equals
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::equals
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testEqualsMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->equals($this->testErrorString));
+        $this->assertFalse($str->equals($this->testErrorStringy));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::equalsIgnoreCase
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::equalsIgnoreCase
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testEqualsIgnoreCaseMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->equalsIgnoreCase($this->testStringIgnoreCase));
+        $this->assertTrue($str->equalsIgnoreCase($this->testStringyIgnoreCase));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::equalsIgnoreCase
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::equalsIgnoreCase
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testEqualsIgnoreCaseMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->equalsIgnoreCase($this->testErrorString));
+        $this->assertFalse($str->equalsIgnoreCase($this->testErrorStringy));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::length
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::length
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testLengthMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->length() == mb_strlen($this->testString));
+        $this->assertTrue($str->length() == mb_strlen($this->testStringy));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::length
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::length
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testLengthMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->length() == mb_strlen($this->testErrorString));
+        $this->assertFalse($str->length() == mb_strlen($this->testErrorStringy));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::concat
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::concat
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      * @return \LazyEight\BasicTypes\Stringy
      */
@@ -203,10 +203,10 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::contains
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::contains
      * @depends testConcatMethod
-     * @uses \LazyEight\BasicTypes\String
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testContainsMethodOnTrue(Stringy $str)
@@ -215,22 +215,22 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::contains
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::contains
      * @depends testConcatMethod
-     * @uses \LazyEight\BasicTypes\String
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testContainsMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->contains($this->testErrorString));
+        $this->assertFalse($str->contains($this->testErrorStringy));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::endsWith
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::endsWith
      * @depends testConcatMethod
-     * @uses \LazyEight\BasicTypes\String
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testEndWithMethodCaseSesitiveOnTrue(Stringy $str)
@@ -239,34 +239,34 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::endsWith
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::endsWith
      * @depends testConcatMethod
-     * @uses \LazyEight\BasicTypes\String
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testEndWithMethodCaseSesitiveOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->endsWith($this->testString));
+        $this->assertFalse($str->endsWith($this->testStringy));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::endsWith
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::endsWith
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testEndWithMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->endsWith($this->testStringIgnoreCaseSuffix, false));
+        $this->assertTrue($str->endsWith($this->testStringyIgnoreCaseSuffix, false));
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String::__construct
-     * @covers \LazyEight\BasicTypes\String::endsWith
-     * @depends testCanConstructedByStringValue
-     * @uses \LazyEight\BasicTypes\String
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::endsWith
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
      */
     public function testEndWithMethodOnFalse(Stringy $str)
