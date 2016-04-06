@@ -199,13 +199,13 @@ class Stringy
      * Returns the index within this string of the last occurrence of the specified character.
      * If you set the fromIndex argument the method will searching backward starting at the specified index.
      *
-     * @param string $ch
+     * @param string $char
      * @param int $fromIndex
      * @return int
      */
-    public function lastIndexOf($ch, $fromIndex = 0)
+    public function lastIndexOf($char, $fromIndex = 0)
     {
-        $position = mb_strripos($this->value, $ch, (int) $fromIndex);
+        $position = mb_strripos($this->value, $char, (int) $fromIndex);
         if (false === $position) {
             return -1;
         }
