@@ -49,7 +49,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     protected $testConcatSuffix = ' CONCAT';
 
     /**
-     * @covers \LazyEight\BasicTypes\String\String::__construct
+     * @covers \LazyEight\BasicTypes\String::__construct
      * @uses \LazyEight\BasicTypes\String
      */
     public function testCanConstructedByStringValue()
@@ -60,7 +60,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String\String::__construct
+     * @covers \LazyEight\BasicTypes\String::__construct
      * @uses \LazyEight\BasicTypes\String
      */
     public function testCanBeConstructedByIntValue()
@@ -71,7 +71,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String\String::__construct
+     * @covers \LazyEight\BasicTypes\String::__construct
      * @uses \LazyEight\BasicTypes\String
      */
     public function testCanBeConstructedByTrueBoolValue()
@@ -82,7 +82,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String\String::__construct
+     * @covers \LazyEight\BasicTypes\String::__construct
      * @uses \LazyEight\BasicTypes\String
      */
     public function testCanBeCreatedByFalseBoolValue()
@@ -93,7 +93,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \LazyEight\BasicTypes\String\String::__construct
+     * @covers \LazyEight\BasicTypes\String::__construct
      * @uses \LazyEight\BasicTypes\String
      */
     public function testCannotBeCreatedFromNull()
