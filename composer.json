@@ -1,11 +1,13 @@
 {
-  "name": "lazyeight/basicTypes",
+  "name": "lazyeight/basic-types",
   "type": "library",
   "license": "MIT",
   "description": "A set of classes of for basic work written with pure PHP",
   "keywords": [
-    "basic types",
-    "string"
+    "basic",
+    "string",
+    "types",
+    "exception"
   ],
   "authors": [
     {
