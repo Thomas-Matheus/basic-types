@@ -139,7 +139,7 @@ class Stringy
             $substring = mb_strtolower($suffix);
             $endOfStr = mb_strtolower($endOfStr);
         }
-        return (string) $substring === $endOfStr;
+        return $substring == $endOfStr;
     }
 
     /**
@@ -147,9 +147,8 @@ class Stringy
      * with the specified prefix.
      * Returns:
      * true if the character sequence represented by the argument is a prefix of the substring of
-     * this object starting at index toffset; false otherwise. The result is false if toffset
-     * is negative or greater than the length of this Stringobject; otherwise the result is
-     * the same as the result of the expression
+     * this object starting at index toOffset; false otherwise. The result is false if toOffset
+     * is negative or greater than the length of this Stringy Object
      *
      * @param string $prefix
      * @param int $toOffset
@@ -157,7 +156,11 @@ class Stringy
      */
     public function startsWith($prefix, $toOffset = 0)
     {
-        return (substr($prefix, (int) $toOffset, mb_strlen($prefix)) === $this->getValue());
+        $strToSearch = mb_substr($this->value, $toOffset, mb_strlen($prefix));
+        if (false !== mb_strpos($strToSearch, $prefix)) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -199,13 +202,13 @@ class Stringy
      * Returns the index within this string of the last occurrence of the specified character.
      * If you set the fromIndex argument the method will searching backward starting at the specified index.
      *
-     * @param string $ch
+     * @param string $char
      * @param int $fromIndex
      * @return int
      */
-    public function lastIndexOf($ch, $fromIndex = 0)
+    public function lastIndexOf($char, $fromIndex = 0)
     {
-        $position = mb_strripos($this->value, $ch, (int) $fromIndex);
+        $position = mb_strripos($this->value, $char, (int) $fromIndex);
         if (false === $position) {
             return -1;
         }
