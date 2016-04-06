@@ -10,7 +10,7 @@ namespace LazyEight\BasicTypes;
 
 use LazyEight\BasicTypes\Exceptions\IndexOutOfBoundsException;
 
-class String
+class Stringy
 {
     /*
      * @var string
@@ -39,7 +39,7 @@ class String
 
     /**
      * Compares this string to the specified object. The result is true if and only if the
-     * argument is not null and is a String object that represents the same sequence of
+     * argument is not null and is a Stringy object that represents the same sequence of
      * characters as this object.
      *
      * @param string $stringToCompare
@@ -51,17 +51,17 @@ class String
     }
 
     /**
-     * Compares this String to another String, ignoring case considerations.
+     * Compares this Stringy to another Stringy, ignoring case considerations.
      * Two strings are considered equal ignoring case if they are of the same length
      * and corresponding characters in the two strings are equal ignoring case.
      *
      * Two characters c1 and c2 are considered the same ignoring case if at least one of the
      * following is true:
      * The two characters are the same (as compared by the == operator)
-     * Applying the method String.toUpperCase(char) to each character produces the same result
-     * Applying the method String.toLowerCase(char) to each character produces the same result
+     * Applying the method Stringy.toUpperCase(char) to each character produces the same result
+     * Applying the method Stringy.toLowerCase(char) to each character produces the same result
      * Returns:
-     * true if the argument is not null and it represents an equivalent String ignoring case;
+     * true if the argument is not null and it represents an equivalent Stringy ignoring case;
      * false otherwise
      *
      * @param string $anotherString
@@ -69,7 +69,7 @@ class String
      */
     public function equalsIgnoreCase($anotherString)
     {
-        return $this->toLowerCase()->getValue() == (new String($anotherString))->toLowerCase()->getValue();
+        return $this->toLowerCase()->getValue() == (new Stringy($anotherString))->toLowerCase()->getValue();
     }
 
     /**
@@ -84,23 +84,23 @@ class String
 
     /**
      * Concatenates the specified string to the end of this string.
-     * If the length of the argument string is 0, then this String object is returned.
-     * Otherwise, a new String object is created, representing a character sequence that
-     * is the concatenation of the character sequence represented by this String object and
+     * If the length of the argument string is 0, then this Stringy object is returned.
+     * Otherwise, a new Stringy object is created, representing a character sequence that
+     * is the concatenation of the character sequence represented by this Stringy object and
      * the character sequence represented by the argument string.
      * returns:
      * A string that represents the concatenation of this object's characters followed by the
      * string argument's characters.
      *
      * @param string $str
-     * @return String
+     * @return Stringy
      */
     public function concat($str)
     {
         if (mb_strlen($str) == 0) {
             return $this;
         }
-        return new String($this->value . $str);
+        return new Stringy($this->value . $str);
     }
 
     /**
@@ -175,7 +175,7 @@ class String
         if ((int) $index < 0 || (int) $index > $this->length()) {
             throw new IndexOutOfBoundsException('The index argument is negative or not less than the length of this string.');
         }
-        return new String(mb_substr($this->value, (int) $index, 1));
+        return new Stringy(mb_substr($this->value, (int) $index, 1));
     }
 
     /**
@@ -234,25 +234,25 @@ class String
     }
 
     /**
-     * Converts all of the characters in this String to lower case using the rules
+     * Converts all of the characters in this Stringy to lower case using the rules
      * of the default locale.
      *
-     * @return String
+     * @return Stringy
      */
     public function toLowerCase()
     {
-        return new String(mb_strtolower($this->value));
+        return new Stringy(mb_strtolower($this->value));
     }
 
     /**
-     * Converts all of the characters in this String to upper case using the rules
+     * Converts all of the characters in this Stringy to upper case using the rules
      * of the default locale.
      *
-     * @return String
+     * @return Stringy
      */
     public function toUpperCase()
     {
-        return new String(mb_strtoupper($this->value));
+        return new Stringy(mb_strtoupper($this->value));
     }
 
     /**
@@ -262,7 +262,7 @@ class String
      */
     public function trim()
     {
-        return new String(trim($this->value));
+        return new Stringy(trim($this->value));
     }
 
     /**
@@ -276,7 +276,7 @@ class String
      */
     public function substring($beginIndex, $endIndex = -1)
     {
-        new String(mb_substr($this->value, $beginIndex, ($endIndex - $beginIndex)));
+        new Stringy(mb_substr($this->value, $beginIndex, ($endIndex - $beginIndex)));
     }
 
     /**
@@ -289,7 +289,7 @@ class String
      */
     public function replace($oldChar, $newChar)
     {
-        return new String(str_replace($oldChar, $newChar, $this->value));
+        return new Stringy(str_replace($oldChar, $newChar, $this->value));
     }
 
     /**
