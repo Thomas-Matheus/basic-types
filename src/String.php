@@ -113,8 +113,8 @@ class String
      */
     public function contains($str)
     {
-        if (!$str) {
-            throw new \InvalidArgumentException('Argument is null instead string!');
+        if (is_null($str)) {
+            throw new \InvalidArgumentException('Argument is null instead of string!');
         }
         return (bool)mb_strpos($this->value, $str);
     }
@@ -130,13 +130,14 @@ class String
      */
     public function endsWith($suffix, $caseSensitive = true)
     {
-        $substringLength = \mb_strlen($suffix, $this->encoding);
+        $substringLength = mb_strlen($suffix);
         $strLength = $this->length();
-        $endOfStr = \mb_substr($this->str, $strLength - $substringLength,
-            $substringLength, $this->encoding);
+        $endOfStr = mb_substr($this->value, $strLength - $substringLength, $substringLength);
+        $substring = $suffix;
+
         if (!$caseSensitive) {
-            $substring = \mb_strtolower($suffix, $this->encoding);
-            $endOfStr = \mb_strtolower($endOfStr, $this->encoding);
+            $substring = mb_strtolower($suffix);
+            $endOfStr = mb_strtolower($endOfStr);
         }
         return (string) $substring === $endOfStr;
     }
@@ -151,12 +152,12 @@ class String
      * the same as the result of the expression
      *
      * @param string $prefix
-     * @param int $toffset
+     * @param int $toOffset
      * @return bool
      */
-    public function startsWith($prefix, $toffset = 0)
+    public function startsWith($prefix, $toOffset = 0)
     {
-        return (substr($prefix, $toffset, mb_strlen($prefix)) === $this->getValue());
+        return (substr($prefix, (int) $toOffset, mb_strlen($prefix)) === $this->getValue());
     }
 
     /**
@@ -171,10 +172,10 @@ class String
      */
     public function charAt($index)
     {
-        if ($index < 0 || $index > $this->length()) {
+        if ((int) $index < 0 || (int) $index > $this->length()) {
             throw new IndexOutOfBoundsException('The index argument is negative or not less than the length of this string.');
         }
-        return new String(mb_substr($this->value, $index, 1));
+        return new String(mb_substr($this->value, (int) $index, 1));
     }
 
     /**
@@ -187,7 +188,7 @@ class String
      */
     public function indexOf($char, $fromIndex = 0)
     {
-        $position = mb_strpos($this->value, $char, $fromIndex);
+        $position = mb_strpos($this->value, $char, (int) $fromIndex);
         if (false === $position) {
             return -1;
         }
@@ -204,7 +205,7 @@ class String
      */
     public function lastIndexOf($ch, $fromIndex = 0)
     {
-        $position = mb_strripos($this->value, $ch, $fromIndex);
+        $position = mb_strripos($this->value, $ch, (int) $fromIndex);
         if (false === $position) {
             return -1;
         }
