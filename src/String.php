@@ -8,9 +8,10 @@
 namespace LazyEight\BasicTypes;
 
 
+use LazyEight\BasicTypes\Exceptions\IndexOutOfBoundsException;
+
 class String
 {
-
     /*
      * @var string
      */
@@ -73,6 +74,7 @@ class String
 
     /**
      * Returns the length of the sequence of characters represented by this object.
+     *
      * @return int
      */
     public function length()
@@ -111,133 +113,192 @@ class String
      */
     public function contains($str)
     {
-        if (!$str) {
-            throw new \InvalidArgumentException('Argument is null instead string!');
+        if (is_null($str)) {
+            throw new \InvalidArgumentException('Argument is null instead of string!');
         }
         return (bool)mb_strpos($this->value, $str);
     }
 
     /**
+     * Returns true if the string ends with $substring, false otherwise. By
+     * default, the comparison is case-sensitive, but can be made insensitive
+     * by setting $caseSensitive to false.
+     *
      * @param string $suffix
+     * @param bool $caseSensitive
      * @return bool
      */
-    public function endsWith($suffix)
+    public function endsWith($suffix, $caseSensitive = true)
     {
-        /*
-        $strlen = strlen($string);
-        $testlen = strlen($test);
-        if ($testlen > $strlen) return false;
-        return substr_compare($string, $test, $strlen - $testlen, $testlen) === 0;
-         */
-        // TODO: Implement endsWith method.
+        $substringLength = mb_strlen($suffix);
+        $strLength = $this->length();
+        $endOfStr = mb_substr($this->value, $strLength - $substringLength, $substringLength);
+        $substring = $suffix;
+
+        if (!$caseSensitive) {
+            $substring = mb_strtolower($suffix);
+            $endOfStr = mb_strtolower($endOfStr);
+        }
+        return (string) $substring === $endOfStr;
     }
 
     /**
-     * @param String $prefix
-     * @param int $toffset
+     * Tests if the substring of this string beginning at the specified index starts
+     * with the specified prefix.
+     * Returns:
+     * true if the character sequence represented by the argument is a prefix of the substring of
+     * this object starting at index toffset; false otherwise. The result is false if toffset
+     * is negative or greater than the length of this Stringobject; otherwise the result is
+     * the same as the result of the expression
+     *
+     * @param string $prefix
+     * @param int $toOffset
      * @return bool
      */
-    public function startsWith(String $prefix, $toffset)
+    public function startsWith($prefix, $toOffset = 0)
     {
-        // TODO: Implement startsWith method.
+        return (substr($prefix, (int) $toOffset, mb_strlen($prefix)) === $this->getValue());
     }
 
     /**
+     * Returns the char value at the specified index. An index ranges from 0 to length() - 1.
+     * The first char value of the sequence is at index 0, the next at index 1, and so on,
+     * as for array indexing. If the char value specified by the index is a surrogate,
+     * the surrogate value is returned.
+     *
      * @param int $index
+     * @throws IndexOutOfBoundsException
      * @return String
      */
     public function charAt($index)
     {
-        // TODO: Implement charAt method.
+        if ((int) $index < 0 || (int) $index > $this->length()) {
+            throw new IndexOutOfBoundsException('The index argument is negative or not less than the length of this string.');
+        }
+        return new String(mb_substr($this->value, (int) $index, 1));
     }
 
     /**
-     * @param String $char
+     * Returns the index within this string of the first occurrence of the specified character.
+     * If the argument fromIndex is specified the search will start at the index that was informed
+     *
+     * @param string $char
+     * @param int $fromIndex
+     * @return int positive with the position of desired part of the string, -1 if the string not found
+     */
+    public function indexOf($char, $fromIndex = 0)
+    {
+        $position = mb_strpos($this->value, $char, (int) $fromIndex);
+        if (false === $position) {
+            return -1;
+        }
+        return $position;
+    }
+
+    /**
+     * Returns the index within this string of the last occurrence of the specified character.
+     * If you set the fromIndex argument the method will searching backward starting at the specified index.
+     *
+     * @param string $ch
      * @param int $fromIndex
      * @return int
      */
-    public function indexOf(String $char, $fromIndex)
+    public function lastIndexOf($ch, $fromIndex = 0)
     {
-        // TODO: Implement indexOf method.
+        $position = mb_strripos($this->value, $ch, (int) $fromIndex);
+        if (false === $position) {
+            return -1;
+        }
+        return $position;
     }
 
     /**
-     * @param String $ch
-     * @param int $fromIndex
-     * @return int
-     */
-    public function lastIndexOf(String $ch, $fromIndex)
-    {
-        // TODO: Implement lastIndexOf method.
-    }
-
-    /**
+     * Returns true if, and only if, length() is 0.
+     *
      * @return bool
      */
     public function isEmpty()
     {
-        // TODO: Implement isEmpty method.
+        return 0 === $this->length();
     }
 
     /**
-     * @param String $char
+     * Splits this string around matches of the given regular expression.
+     *
+     * @param string $char
      * @return array
      */
-    public function split(String $char)
+    public function split($char)
     {
-        // TODO: Implement split method.
+        return mb_split($char, $this->value);
     }
 
     /**
+     * Converts all of the characters in this String to lower case using the rules
+     * of the default locale.
+     *
      * @return String
      */
     public function toLowerCase()
     {
-        // TODO: Implement toLowerCase method.
+        return new String(mb_strtolower($this->value));
     }
 
     /**
+     * Converts all of the characters in this String to upper case using the rules
+     * of the default locale.
+     *
      * @return String
      */
     public function toUpperCase()
     {
-        // TODO: Implement toUpperCase method.
+        return new String(mb_strtoupper($this->value));
     }
 
     /**
+     * Returns a copy of the string, with leading and trailing whitespace omitted.
+     *
      * @return String
      */
     public function trim()
     {
-        // TODO: Implement trim method.
+        return new String(trim($this->value));
     }
 
     /**
+     * Returns a new string that is a substring of this string. The substring begins at
+     * the specified beginIndex and extends to the character at index endIndex - 1.
+     * Thus the length of the substring is endIndex-beginIndex.
+     *
      * @param int $beginIndex
      * @param int $endIndex
      * @return String
      */
-    public function substring($beginIndex, $endIndex)
+    public function substring($beginIndex, $endIndex = -1)
     {
-        // TODO: Implement substring method.
+        new String(mb_substr($this->value, $beginIndex, ($endIndex - $beginIndex)));
     }
 
     /**
-     * @param String $oldChar
-     * @param String $newChar
+     * Returns a new string resulting from replacing all occurrences of
+     * oldChar in this string with newChar.
+     *
+     * @param string $oldChar
+     * @param string $newChar
      * @return String
      */
-    public function replace(String $oldChar, String $newChar)
+    public function replace($oldChar, $newChar)
     {
-        // TODO: Implement replace method.
+        return new String(str_replace($oldChar, $newChar, $this->value));
     }
 
     /**
+     * The string value (which is already a string!) is itself returned.
+     *
      * @return string
      */
     public function __toString()
     {
         return $this->value;
     }
-
 }
