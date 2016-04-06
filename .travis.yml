@@ -11,3 +11,6 @@ php:
 before_script:
   - composer self-update
   - composer install --prefer-dist
+
+  script:
+   - phpunit --coverage-clover=coverage.clover --configuration ./phpunit.xml.dist ./tests
