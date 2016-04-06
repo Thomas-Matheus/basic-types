@@ -16,37 +16,37 @@ class StringyTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $testStringy = 'TEST STRING';
+    protected $defaultStringy = 'TEST STRING';
 
     /**
      * @var string
      */
-    protected $testStringySuffix = 'RING';
+    protected $stringySuffix = 'RING';
 
     /**
      * @var string
      */
-    protected $testErrorStringy = 'ERROR STRING';
+    protected $errorStringy = 'ERROR STRING';
 
     /**
      * @var string
      */
-    protected $testStringyIgnoreCase = 'teST strING';
+    protected $ignoreCase = 'teST strING';
 
     /**
      * @var string
      */
-    protected $testStringyIgnoreCaseSuffix = 'rING';
+    protected $ignoreCaseSuffix = 'rING';
 
     /**
      * @var string
      */
-    protected $testConcatFinalResult = 'TEST STRING CONCAT';
+    protected $concatFinalResult = 'TEST STRING CONCAT';
 
     /**
      * @var string
      */
-    protected $testConcatSuffix = ' CONCAT';
+    protected $concatSuffix = ' CONCAT';
 
     /**
      * @covers \LazyEight\BasicTypes\Stringy::__construct
@@ -54,7 +54,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testCanConstructedByStringyValue()
     {
-        $str = new Stringy($this->testStringy);
+        $str = new Stringy($this->defaultStringy);
         $this->assertInstanceOf(Stringy::class, $str);
         return $str;
     }
@@ -112,7 +112,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testValueCanBeRetrieved(Stringy $str)
     {
-        $this->assertEquals($this->testStringy, $str->getValue());
+        $this->assertEquals($this->defaultStringy, $str->getValue());
     }
 
     /**
@@ -124,7 +124,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testEqualsMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->equals($this->testStringy));
+        $this->assertTrue($str->equals($this->defaultStringy));
     }
 
     /**
@@ -136,7 +136,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testEqualsMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->equals($this->testErrorStringy));
+        $this->assertFalse($str->equals($this->errorStringy));
     }
 
     /**
@@ -148,7 +148,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testEqualsIgnoreCaseMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->equalsIgnoreCase($this->testStringyIgnoreCase));
+        $this->assertTrue($str->equalsIgnoreCase($this->ignoreCase));
     }
 
     /**
@@ -160,7 +160,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testEqualsIgnoreCaseMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->equalsIgnoreCase($this->testErrorStringy));
+        $this->assertFalse($str->equalsIgnoreCase($this->errorStringy));
     }
 
     /**
@@ -172,7 +172,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testLengthMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->length() == mb_strlen($this->testStringy));
+        $this->assertTrue($str->length() == mb_strlen($this->defaultStringy));
     }
 
     /**
@@ -184,7 +184,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testLengthMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->length() == mb_strlen($this->testErrorStringy));
+        $this->assertFalse($str->length() == mb_strlen($this->errorStringy));
     }
 
     /**
@@ -197,8 +197,8 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testConcatMethod(Stringy $str)
     {
-        $strTest = $str->concat($this->testConcatSuffix);
-        $this->assertEquals($this->testConcatFinalResult, $strTest);
+        $strTest = $str->concat($this->concatSuffix);
+        $this->assertEquals($this->concatFinalResult, $strTest);
         return $strTest;
     }
 
@@ -211,7 +211,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testContainsMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->contains($this->testConcatSuffix));
+        $this->assertTrue($str->contains($this->concatSuffix));
     }
 
     /**
@@ -223,7 +223,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testContainsMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->contains($this->testErrorStringy));
+        $this->assertFalse($str->contains($this->errorStringy));
     }
 
     /**
@@ -235,7 +235,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testEndWithMethodCaseSesitiveOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->endsWith($this->testConcatSuffix));
+        $this->assertTrue($str->endsWith($this->concatSuffix));
     }
 
     /**
@@ -247,7 +247,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testEndWithMethodCaseSesitiveOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->endsWith($this->testStringy));
+        $this->assertFalse($str->endsWith($this->defaultStringy));
     }
 
     /**
@@ -259,7 +259,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testEndWithMethodOnTrue(Stringy $str)
     {
-        $this->assertTrue($str->endsWith($this->testStringyIgnoreCaseSuffix, false));
+        $this->assertTrue($str->endsWith($this->ignoreCaseSuffix, false));
     }
 
     /**
@@ -271,7 +271,6 @@ class StringyTest extends \PHPUnit_Framework_TestCase
      */
     public function testEndWithMethodOnFalse(Stringy $str)
     {
-        $this->assertFalse($str->endsWith($this->testConcatSuffix, false));
+        $this->assertFalse($str->endsWith($this->concatSuffix, false));
     }
-
 }
