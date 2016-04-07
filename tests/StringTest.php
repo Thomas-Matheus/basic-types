@@ -306,14 +306,14 @@ class StringyTest extends \PHPUnit_Framework_TestCase
     public function testIndexOf(Stringy $str)
     {
         $offSet = 4;
-        $suffixIndexStartsValue = mb_strpos($str->getValue(), $this->stringySuffix);
-        $prefixIndexStartsValue = mb_strpos($str->getValue(), $this->stringyPrefix);
-        $suffixIndexStartsValueWithOffSet = mb_strpos($str->getValue(), $this->stringySuffix, $offSet);
+        $suffixIndexStarts = mb_strpos($str->getValue(), $this->stringySuffix);
+        $prefixIndexStarts = mb_strpos($str->getValue(), $this->stringyPrefix);
+        $suffixIndexStartsOffSet = mb_strpos($str->getValue(), $this->stringySuffix, $offSet);
 
-        $this->assertEquals($str->indexOf($this->stringySuffix), $suffixIndexStartsValue);
-        $this->assertNotEquals($str->indexOf($this->stringySuffix), $prefixIndexStartsValue);
-        $this->assertEquals($str->indexOf($this->stringySuffix, $offSet), $suffixIndexStartsValueWithOffSet);
-        $this->assertNotEquals($str->indexOf($this->stringySuffix, $offSet), $prefixIndexStartsValue);
+        $this->assertEquals($str->indexOf($this->stringySuffix), $suffixIndexStarts);
+        $this->assertNotEquals($str->indexOf($this->stringySuffix), $prefixIndexStarts);
+        $this->assertEquals($str->indexOf($this->stringySuffix, $offSet), $suffixIndexStartsOffSet);
+        $this->assertNotEquals($str->indexOf($this->stringySuffix, $offSet), $prefixIndexStarts);
     }
 
     /**
