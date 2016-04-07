@@ -9,8 +9,9 @@ namespace LazyEight\BasicTypes;
 
 
 use LazyEight\BasicTypes\Exceptions\IndexOutOfBoundsException;
+use LazyEight\BasicTypes\Interfaces\ValueObjectInterface;
 
-class Stringy
+class Stringy implements ValueObjectInterface
 {
     /*
      * @var string
