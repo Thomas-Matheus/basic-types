@@ -9,6 +9,7 @@ PHP minimum version: 5.6
 
 ## Current version includes:
   - Stringy
+  - ValueObjectInterface
   - IndexOutOfBoundsException
   
 ## License
