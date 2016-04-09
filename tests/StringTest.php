@@ -379,4 +379,62 @@ class StringyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($str->__toString(), $this->defaultStringy);
         $this->assertNotEquals($str->__toString(), $this->errorStringy);
     }
+
+    /**
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::split
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
+     * @param \LazyEight\BasicTypes\Stringy $str
+     */
+    public function testSplit(Stringy $str)
+    {
+        $subset = mb_split(' ', $this->defaultStringy);
+        $this->assertArraySubset($subset, $str->split(' '));
+        $this->assertTrue(count($subset) == 2);
+    }
+
+    /**
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::substring
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
+     * @param \LazyEight\BasicTypes\Stringy $str
+     */
+    public function testSubstring(Stringy $str)
+    {
+        $this->assertEquals($str->substring(0, 3), $this->stringyPrefix);
+        $this->assertEquals($str->substring(7), $this->stringySuffix);
+        $this->assertNotEquals($str->substring(0, 3), $this->stringySuffix);
+    }
+
+    /**
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::replace
+     * @uses \LazyEight\BasicTypes\Stringy
+     */
+    public function testReplace()
+    {
+        $strToTest = new Stringy($this->trimTest);
+        $this->assertEquals($this->trimmedTest, $strToTest->replace(' ', ''));
+        $this->assertEquals(new Stringy(' A0C '), $strToTest->replace('B', '0'));
+        $this->assertNotEquals(new Stringy(' A0C '), $strToTest->replace('B', 'H'));
+    }
+
+    /**
+     * @covers \LazyEight\BasicTypes\Stringy::__construct
+     * @covers \LazyEight\BasicTypes\Stringy::substring
+     * @depends testCanConstructedByStringyValue
+     * @uses \LazyEight\BasicTypes\Stringy
+     * @param \LazyEight\BasicTypes\Stringy $str
+     */
+    public function testLastIndexOf(Stringy $str)
+    {
+        $this->assertEquals($str->lastIndexOf('T'), 6);
+        $this->assertNotEquals($str->lastIndexOf('T'), 8);
+        $this->assertEquals($str->lastIndexOf('G'), ($str->length() - 1));
+        $this->assertEquals($str->lastIndexOf('T', 7), 6);
+        $this->assertNotEquals($str->lastIndexOf('T', 7), 0);
+        $this->assertEquals($str->lastIndexOf('T', 2), 0);
+    }
 }

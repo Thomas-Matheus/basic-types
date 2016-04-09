@@ -117,7 +117,7 @@ class Stringy implements ValueObjectInterface
         if (is_null($str)) {
             throw new \InvalidArgumentException('Argument is null instead of string!');
         }
-        return (bool)mb_strpos($this->value, $str);
+        return (bool) mb_strpos($this->value, $str);
     }
 
     /**
@@ -207,13 +207,14 @@ class Stringy implements ValueObjectInterface
      * @param int $fromIndex
      * @return int
      */
-    public function lastIndexOf($char, $fromIndex = 0)
+    public function lastIndexOf($char, $fromIndex = -1)
     {
-        $position = mb_strripos($this->value, $char, (int) $fromIndex);
-        if (false === $position) {
-            return -1;
+        if ($fromIndex > 0) {
+            $valueForSearch = $this->substring(0, $fromIndex);
+            var_dump($valueForSearch);
+            return ($position = mb_strripos($valueForSearch, $char)) === false ? -1 : $position;
         }
-        return $position;
+        return ($position = mb_strripos($this->value, $char, (int) $fromIndex)) === false ? -1 : $position;
     }
 
     /**
@@ -280,7 +281,10 @@ class Stringy implements ValueObjectInterface
      */
     public function substring($beginIndex, $endIndex = -1)
     {
-        new Stringy(mb_substr($this->value, $beginIndex, ($endIndex - $beginIndex)));
+        if ($endIndex < 0) {
+            $endIndex = $this->length();
+        }
+        return new Stringy(mb_substr($this->value, $beginIndex, ($endIndex - $beginIndex) + 1));
     }
 
     /**
