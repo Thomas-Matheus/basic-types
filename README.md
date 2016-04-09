@@ -14,4 +14,4 @@ PHP minimum version: 5.6
   
 ## License
   
-The MIT License (MIT). Please see [License File](https://github.com/victormech/basic-types/blob/master/LICENSE) for more information. 
+The MIT License (MIT). Please see [License File](https://github.com/victormech/basic-types/blob/master/LICENSE) for more information.
