@@ -21,7 +21,7 @@ class Inty implements ValueObjectInterface
     }
 
     /**
-     * int
+     * @return int
      */
     public function getValue()
     {
