@@ -221,6 +221,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
     {
         $strTest = $str->concat($this->concatSuffix);
         $this->assertEquals($this->concatFinalResult, $strTest);
+        $this->assertNotEquals($str->concat('ABC'), $this->defaultStringy);
         return $strTest;
     }
 
