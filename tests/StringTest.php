@@ -423,7 +423,7 @@ class StringyTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \LazyEight\BasicTypes\Stringy::__construct
-     * @covers \LazyEight\BasicTypes\Stringy::substring
+     * @covers \LazyEight\BasicTypes\Stringy::lastIndexOf
      * @depends testCanConstructedByStringyValue
      * @uses \LazyEight\BasicTypes\Stringy
      * @param \LazyEight\BasicTypes\Stringy $str
