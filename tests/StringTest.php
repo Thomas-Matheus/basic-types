@@ -308,11 +308,11 @@ class StringyTest extends \PHPUnit_Framework_TestCase
         $offSet = 4;
         $suffixIndexStarts = mb_strpos($str->getValue(), $this->stringySuffix);
         $prefixIndexStarts = mb_strpos($str->getValue(), $this->stringyPrefix);
-        $suffixIndexStartsOffSet = mb_strpos($str->getValue(), $this->stringySuffix, $offSet);
+        $suffixIndexOffSet = mb_strpos($str->getValue(), $this->stringySuffix, $offSet);
 
         $this->assertEquals($str->indexOf($this->stringySuffix), $suffixIndexStarts);
         $this->assertNotEquals($str->indexOf($this->stringySuffix), $prefixIndexStarts);
-        $this->assertEquals($str->indexOf($this->stringySuffix, $offSet), $suffixIndexStartsOffSet);
+        $this->assertEquals($str->indexOf($this->stringySuffix, $offSet), $suffixIndexOffSet);
         $this->assertNotEquals($str->indexOf($this->stringySuffix, $offSet), $prefixIndexStarts);
     }
 
