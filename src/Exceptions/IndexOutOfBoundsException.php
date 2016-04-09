@@ -8,7 +8,7 @@
 
 namespace LazyEight\BasicTypes\Exceptions;
 
-class IndexOutOfBoundsException extends \Exception
+class IndexOutOfBoundsException extends \OutOfBoundsException
 {
 
 }
