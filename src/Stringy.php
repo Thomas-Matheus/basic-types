@@ -211,7 +211,6 @@ class Stringy implements ValueObjectInterface
     {
         if ($fromIndex > 0) {
             $valueForSearch = $this->substring(0, $fromIndex);
-            var_dump($valueForSearch);
             return ($position = mb_strripos($valueForSearch, $char)) === false ? -1 : $position;
         }
         return ($position = mb_strripos($this->value, $char, (int) $fromIndex)) === false ? -1 : $position;
