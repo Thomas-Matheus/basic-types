@@ -234,7 +234,12 @@ class Stringy implements ValueObjectInterface
      */
     public function split($char)
     {
-        return mb_split($char, $this->value);
+        $arrSplit = mb_split($char, $this->value);
+        $total = count($arrSplit);
+        for ($i = 0; $i < $total; $i++) {
+            $arrSplit[$i] = new Stringy($arrSplit[$i]);
+        }
+        return $arrSplit;
     }
 
     /**
