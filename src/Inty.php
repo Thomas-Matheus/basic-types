@@ -15,13 +15,16 @@ class Inty implements ValueObjectInterface
 {
     private $value;
 
+    /**
+     * @param int $value
+     */
     public function __construct($value)
     {
         $this->value = (int) $value;
     }
 
     /**
-     * @return int
+     * int
      */
     public function getValue()
     {
